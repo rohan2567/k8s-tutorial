@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kubernetes</title>
+
+	<meta name=”viewport” content=”width=device-width,  initial-scale=1, user-scalable=yes″>
+<meta name="description" content="The Curriculum Vitae of Joe Bloggs."/>
+<meta charset="UTF-8"> 
+
+</head>
+<style>
+
+	
+@viewport
+  {
+    width:extend-to-zoom;
+    zoom:1.0;
+  }
+@-ms-viewport
+  {
+     width:extend-to-zoom;
+    zoom:1.0;
+  }
+	
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    margin:0;
+    padding:0;
+    vertical-align:baseline;
+    }
+    
+    article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display:block;
+    }
+    
+    html, body {background: #181818; font-family: 'Lato', helvetica, arial, sans-serif; font-size: 16px; color: #222;}
+    
+    .clear {clear: both;}
+    
+    p {
+        font-size: 1em;
+        line-height: 1.4em;
+        margin-bottom: 20px;
+        color: #444;
+    }
+    
+    #cv {
+        width: 90%;
+        max-width: 800px;
+        background: #f3f3f3;
+        margin: 30px auto;
+    }
+    
+    .mainDetails {
+        padding: 25px 35px;
+        border-bottom: 2px solid #cf8a05;
+        background: #ededed;
+    }
+    
+    #name h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        margin-bottom: -6px;
+    }
+    
+    #name h2 {
+        font-size: 2em;
+        margin-left: 2px;
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+    }
+    
+    #mainArea {
+        padding: 0 40px;
+    }
+    
+    #headshot {
+        width: 12.5%;
+        float: left;
+        margin-right: 30px;
+    }
+    
+    #headshot img {
+        width: 100%;
+        height: auto;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+    }
+    
+    #name {
+        float: left;
+    }
+    
+    #contactDetails {
+        float: right;
+    }
+    
+    #contactDetails ul {
+        list-style-type: none;
+        font-size: 0.9em;
+        margin-top: 2px;
+    }
+    
+    #contactDetails ul li {
+        margin-bottom: 3px;
+        color: #444;
+    }
+    
+    #contactDetails ul li a, a[href^=tel] {
+        color: #444; 
+        text-decoration: none;
+        -webkit-transition: all .3s ease-in;
+        -moz-transition: all .3s ease-in;
+        -o-transition: all .3s ease-in;
+        -ms-transition: all .3s ease-in;
+        transition: all .3s ease-in;
+    }
+    
+    #contactDetails ul li a:hover { 
+        color: #cf8a05;
+    }
+    
+    
+    section {
+        border-top: 1px solid #dedede;
+        padding: 20px 0 0;
+    }
+    
+    section:first-child {
+        border-top: 0;
+    }
+    
+    section:last-child {
+        padding: 20px 0 10px;
+    }
+    
+    .sectionTitle {
+        float: left;
+        width: 25%;
+    }
+    
+    .sectionContent {
+        float: right;
+        width: 72.5%;
+    }
+    
+    .sectionTitle h1 {
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        font-style: italic;
+        font-size: 1.5em;
+        color: #cf8a05;
+    }
+    
+    .sectionContent h2 {
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        font-size: 1.5em;
+        margin-bottom: -2px;
+    }
+    
+    .subDetails {
+        font-size: 0.8em;
+        font-style: italic;
+        margin-bottom: 3px;
+    }
+    
+    .keySkills {
+        list-style-type: none;
+        -moz-column-count:3;
+        -webkit-column-count:3;
+        column-count:3;
+        margin-bottom: 20px;
+        font-size: 1em;
+        color: #444;
+    }
+    
+    .keySkills ul li {
+        margin-bottom: 3px;
+    }
+    
+    @media all and (min-width: 602px) and (max-width: 800px) {
+        #headshot {
+            display: none;
+        }
+        
+        .keySkills {
+        -moz-column-count:2;
+        -webkit-column-count:2;
+        column-count:2;
+        }
+    }
+    
+    @media all and (max-width: 601px) {
+        #cv {
+            width: 95%;
+            margin: 10px auto;
+            min-width: 280px;
+        }
+        
+        #headshot {
+            display: none;
+        }
+        
+        #name, #contactDetails {
+            float: none;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .sectionTitle, .sectionContent {
+            float: none;
+            width: 100%;
+        }
+        
+        .sectionTitle {
+            margin-left: -2px;
+            font-size: 1.25em;
+        }
+        
+        .keySkills {
+            -moz-column-count:2;
+            -webkit-column-count:2;
+            column-count:2;
+        }
+    }
+    
+    @media all and (max-width: 480px) {
+        .mainDetails {
+            padding: 15px 15px;
+        }
+        
+        section {
+            padding: 15px 0 0;
+        }
+        
+        #mainArea {
+            padding: 0 25px;
+        }
+    
+        
+        .keySkills {
+        -moz-column-count:1;
+        -webkit-column-count:1;
+        column-count:1;
+        }
+        
+        #name h1 {
+            line-height: .8em;
+            margin-bottom: 4px;
+        }
+    }
+    
+    @media print {
+        #cv {
+            width: 100%;
+        }
+    }
+    
+    @-webkit-keyframes reset {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @-webkit-keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @-moz-keyframes reset {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @-moz-keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes reset {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .instaFade {
+        -webkit-animation-name: reset, fade-in;
+        -webkit-animation-duration: 1.5s;
+        -webkit-animation-timing-function: ease-in;
+        
+        -moz-animation-name: reset, fade-in;
+        -moz-animation-duration: 1.5s;
+        -moz-animation-timing-function: ease-in;
+        
+        animation-name: reset, fade-in;
+        animation-duration: 1.5s;
+        animation-timing-function: ease-in;
+    }
+    
+    .quickFade {
+        -webkit-animation-name: reset, fade-in;
+        -webkit-animation-duration: 2.5s;
+        -webkit-animation-timing-function: ease-in;
+        
+        -moz-animation-name: reset, fade-in;
+        -moz-animation-duration: 2.5s;
+        -moz-animation-timing-function: ease-in;
+        
+        animation-name: reset, fade-in;
+        animation-duration: 2.5s;
+        animation-timing-function: ease-in;
+    }
+     
+    .delayOne {
+        -webkit-animation-delay: 0, .5s;
+        -moz-animation-delay: 0, .5s;
+        animation-delay: 0, .5s;
+    }
+    
+    .delayTwo {
+        -webkit-animation-delay: 0, 1s;
+        -moz-animation-delay: 0, 1s;
+        animation-delay: 0, 1s;
+    }
+    
+    .delayThree {
+        -webkit-animation-delay: 0, 1.5s;
+        -moz-animation-delay: 0, 1.5s;
+        animation-delay: 0, 1.5s;
+    }
+    
+    .delayFour {
+        -webkit-animation-delay: 0, 2s;
+        -moz-animation-delay: 0, 2s;
+        animation-delay: 0, 2s;
+    }
+    
+    .delayFive {
+        -webkit-animation-delay: 0, 2.5s;
+        -moz-animation-delay: 0, 2.5s;
+        animation-delay: 0, 2.5s;
+	}
+	
+
+    .headings
+    {
+        font-size: xx-large;
+    }
+    .mini-headings
+    {
+        font-size: x-large;
+        font-style: oblique;
+        color:darkgoldenrod
+    }
+
+
+
+
+
+
+</style>
+
+
+
+
+
+<body id="top">
+
+<div id="cv" class="instaFade">
+	<div class="mainDetails">
+		<div id="headshot" class="quickFade">
+			<img src="data:image/png;base64,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"/>
+		</div>
+		
+		<div id="name">
+			<h1 class="quickFade delayTwo">Kubernetes</h1>
+			<!-- <h2 class="quickFade delayThree">DevOps</h2> -->
+		</div>
+		
+		<div id="contactDetails" class="quickFade delayFour">
+			<ul>
+                <li>What is Kubernetes</li>
+                <li>Architecture</li>
+                <li>Key Feautures</li>
+                <li>Cluster Setup</li>
+                <li>YAML concepts</li>
+                <li>Kubernetes Pods</li>
+                <li>ReplicaSets</li>
+                <li>Deployments</li>
+                <li>Namespaces</li>
+                <li>Services</li>
+                <li></li>
+
+                
+
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+
+
+
+
+
+	    <div id="mainArea" class="quickFade delayFive">
+            <p>
+                <center>
+                <div class="headings">
+                    What is Kubernetes?
+                </div>
+                </center>
+                <li>Also known as 'k8s'</li>
+                <li>Kubernetes is an extensible, portable, and open-source platform designed by Google in 2014</li>
+                <li>Kubernetes is a container management and orchestration system</li>
+<li>It runs and manages containerized applications on a cluster</li>
+<li>Provides container grouping, load balancing, auto-healing, scaling features</li>
+<br><div class="mini-headings">Using Kubernetes we can do cool stuff like : </div>
+• Manage containerized applications across a cluster of nodes<br>
+• Application auto scaling<br>
+• Efficient & Robust deployment of application<br>
+• Self healing application<br>
+• Blue/green deployment, canary deployment-Easy Service deployments, updates and scalability<br>
+• Long running services, but also batch (one-off) jobs<br>
+• Overcommit our cluster and evict low-priority jobs<br>
+• Run services with state full data (databases etc.)<br>
+• Fine-grained access control defining what can be done by whom on which resources<br>
+• Integrating third party services (service catalog)<br>
+• Automating complex tasks (operators)<br>
+<br>
+
+            </p>
+            <hr>
+            
+<p>
+<center>
+    <div class="headings">
+        Architecture
+    </div>
+</center>
+<center>
+    <img src="assets/Kubernetes/1.png" width="720px">
+</center><br>
+<center>
+    <img src="assets/Kubernetes/2.png">
+</center><br>
+<div class="mini-headings">Components</div><br>
+<center>
+    <img src="assets/Kubernetes/3.png" width="720px">
+</center>
+<center>
+    <img src="assets/Kubernetes/4.png" width="720px">
+</center><br><br>
+</p>
+<hr>
+
+
+
+<p>
+    <center>
+        <div class="headings">
+            Key Features
+        </div>
+    </center>
+    <div class="mini-headings">
+        Container Grouping - Pods
+    </div>
+    • A Pod is a group of containers that share the storage, users, network interfaces, etc. using Linux
+namespaces (ipc, uts, mount, pid, network and user), cgroups, and other kernel features.<br>
+• Containers in a pod share an IP address and the port space<br>
+<center>
+    <img src="assets/Kubernetes/5.png">
+</center><br>
+
+    <div class="mini-headings">
+        Container Orchestration - Replication Controller
+    </div>
+    • Replication controller is a logical entity that creates and manages pods.<br>
+• Replication controllers auto heal pods according to the given health checks.<br>
+• These health checks are called liveness probes.<br>
+• Replication controllers support manual scaling of pods, and this is handled by the replica count.<br><br>
+<center>
+    <img src="assets/Kubernetes/6.png">
+</center><br>
+
+    <div class="mini-headings">
+        Health Checking
+    </div>
+    Software applications fail due to many reasons:<br>
+    • bugs in the code<br>
+    • resource limitations<br>
+    • networking issues<br>
+    • infrastructure problems, etc.<br>
+<br>
+Monitoring software application deployments is essential.<br>
+Kubernetes (via Kubelet agent) provides two main mechanisms for monitoring applications.<br><br>
+1. Process Health Checking<br>
+• Kubelet continuously checks the health of the containers via the Docker daemon<br>
+• If a container process is not responding, it will get restarted.<br>
+• This feature is enabled by default and it’s not customizable<br><br>
+2. Application Health Checking<br>
+Kubernetes provides three methods for monitoring the application health and these are known as
+health checking probes.<br>
+<center>
+    <img src="assets/Kubernetes/7.png" width=720px>
+</center><br>
+
+
+
+    <div class="mini-headings">
+        Service Discovery and Load Balancing
+    </div>
+    <br>• Kubernetes service provides a mechanism for load balancing pods.<br>
+• It is implemented using kube-proxy<br>
+• Internally uses iptable rules for load balancing at the network layer.<br>
+• Each Kubernetes service exposes a DNS entry for accessing the services within the Kubernetes
+internal network<br>
+<center>
+    <img src="assets/Kubernetes/8.png">
+</center><br>
+
+
+    <div class="mini-headings">
+        Automated Rollouts and Rollbacks
+    </div>
+    <center>
+        <img src="assets/Kubernetes/9.png" width="720px">
+    </center><br>
+
+    <div class="mini-headings">
+        Horizontal Autoscaling
+    </div>
+    • Horizontal Pod Autoscalers provide autoscaling capabilities for pods.<br>
+    • It does this by monitoring health statistics sent by the cAdvisor.<br>
+    • A cAdvisor instance runs in each node and provides information on CPU, memory, and disk
+usage of containers.<br>
+• These statistics get aggregated by Heapster and get accessible via the Kubernetes API
+server.<br>
+• Currently, horizontal autoscaling is only available based on CPU usage.<br>
+• Work is in progress to support custom metrics.<br>
+<center>
+    <img src="assets/Kubernetes/10.png">
+</center><br>
+
+    <div class="mini-headings">
+        Secret and Configuration Management
+    </div><br>
+    <center>
+        <img src="assets/Kubernetes/11.png" width="720px">
+    </center><br>
+
+    <div class="mini-headings">
+        Storage Orchestration
+    </div>
+    <center>
+        <img src="assets/Kubernetes/12.png">
+    </center><br>
+
+    <div class="mini-headings">
+        Providing Well Known Ports for Kubernetes Services
+    </div>
+    <center>
+        <img src="assets/Kubernetes/13.png" width="730px">
+    </center><br>
+
+    <div class="mini-headings">
+        Service Load Balancers and Sticky Session Management
+    </div>
+    <center>
+        <img src="assets/Kubernetes/14.png" width="730px">
+    </center>
+    <center>
+        <img src="assets/Kubernetes/15.png" width="730px">
+    </center><br>
+
+    <div class="mini-headings">
+        Kubernetes Dashboard
+    </div>
+    • Kubernetes dashboard provides features for deploying and monitoring applications.<br>
+    • Any server cluster can be deployed by specifying a Docker image ID and required service
+ports.<br>
+• Once deployed, server logs can be viewed via the same UI.<br>
+    
+
+    <div class="mini-headings">
+        Resource Usage Monitoring
+    </div>
+    <center>
+        <img src="assets/Kubernetes/16.png">
+    </center><br>
+    <center>
+        <img src="assets/Kubernetes/17.png">
+    </center><br>
+    <div class="mini-headings">
+        Kubernetes Network Architecture
+    </div>
+    <center>
+        <img src="assets/Kubernetes/18.png">
+    </center><br>
+</p>
+<hr>
+
+
+
+
+
+    <p>
+        <center>
+            <div class="headings">
+                Cluster Setup
+            </div>
+        </center>
+       notes
+    </p>
+    <hr>
+
+
+
+        <p>
+            <center>
+                <div class="headings">
+                    Kubernetes Pods
+                </div>
+            </center>
+            notes
+        </p>
+        <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <br>
+	    </div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3753241-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
