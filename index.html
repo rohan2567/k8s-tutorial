@@ -419,15 +419,10 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 			<ul>
                 <li>What is Kubernetes</li>
                 <li>Architecture</li>
-                <li>Key Feautures</li>
+                <!-- <li>Key Feautures</li> -->
                 <li>Cluster Setup</li>
-                <li>YAML concepts</li>
-                <li>Kubernetes Pods</li>
-                <li>ReplicaSets</li>
-                <li>Deployments</li>
-                <li>Namespaces</li>
-                <li>Services</li>
-                <li></li>
+                <li>K8-s Objects</li>
+
 
                 
 
@@ -485,14 +480,89 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 <center>
     <img src="assets/Kubernetes/3.png" width="720px">
 </center>
-<center>
+<!-- <center>
     <img src="assets/Kubernetes/4.png" width="720px">
-</center><br><br>
+</center><br><br> -->
+<br>
+The Master has the following components : 
+<br><br>
+<div style="color: red">API Server</div>
+<ul><li>It provides a forward facing REST interface into the kubernetes control plane and datastore.</li>
+<li>Interaction of kubernetes with all  the clients and other applications is strictly through the API Server.</li>
+<li>Four APIs are exposed through API server:
+Kubernetes API,
+Extensions API,
+Autoscaling API,
+Batch API.</li>
+<li>These components are used for communicating with the Kubernetes cluster and for executing container cluster operations.</li>
+<li>The API Server is the only component that connects to etcd server.</li>
+<li>Every other component to work with cluster state or access, must go through the API Server.</li>
+<li>It handles authentication and authorization, admission control, mutation and request validation in addition it acts as front-end to the backing data store. It is like a gatekeeper to the cluster.</li><br>
+</ul><br>
+<div style="color: red;">Scheduler</div>
+<ul>
+<li>At a particular instance of time there are requests for n number of instances of application and multiple servers are being used to spawn them, it becomes necessary to place right instance in right server by checking various parameters like resource requirements, hardware and software constraints,policy constraints, data locality and much more.
+    On top of this there is also a need to balance the load.
+    Manually doing this will be a huge task, which is tedious and we are bound to miss on various parameters.
+    The solution is Scheduler.</li>
+    <li>The responsibility of Scheduler is to monitor the resource utilization of each node and scheduling the containers according to resource availability.</li>
+    <li>In Kubernetes cluster containers are placed inside pods and pods are placed inside Nodes. API sets requirements that are specific to a workload. Scheduler attempts to place each Pod created by Kubernetes on one of the nodes based on resource availability.</li>
+ 
+    <li>Default scheduler uses bin packing.</li>
+        <li>Requirements can include: general hardware requirements, labels, affinity/anti-affinity, and various other custom resource requirements.</li>
+        <li>Kubernetes scheduler is a part of Kubernetes container orchestration platform. Scheduler makes sure that Pods are mapped to the Nodes.</li>
+    </ul>
+<br>
+<div style="color: red;">Controller</div>
+    <ul>
+        <li>Serves as the primary daemon which manages all the core component control loops.</li>
+        <li>Through the API server, it monitors the current state of the applications  that are deployed on Kubernetes and it makes sure that desired state is met.</li>
+    </ul>
+<br>
+<div style="color: red;">etcd</div>
+<ul>
+    <li>Its a distributed, consistent key-value store and released as an open source by CoreOS.</li>
+    <li>For many of the distributed systems it serves as the backbone. It is used to store and manage the critical information that is needed to keep distributed systems running. Prominently it manages the configuration data, metadata and state data.</li>
+    <li>Etcd implements a watch feature, it provides an event-based interface for monitoring changes to keys asynchronously. Through these systems clients are allowed to perform a lightweight subscription for the changes to parts of the key namespace. Once a key is changed, “watchers” get notified immediately. In the context of Kubernetes, this is a crucial feature as the API Server component relies heavily on this to get notified and calls the appropriate business logic components in order to move the current state towards the desired state.</li>
+    <li>Containerized environments have complex data management requirements, as we scaleup the complexity increases further more. Kubernetes makes the process simple by coordinating tasks such as configuration, load balancing, health monitoring, deployment, service discovery and job scheduling across cluster. In order to achieve this coordination, there is a need of data store that provides the  true status of the system, clusters, pods and all the application instances that are within them at any given point of time. Etcd is the data store that fulfills this requirement.</li>
+    <li>In case of Kubernetes cluster, an etcd instance can be deployed as Pod on the masters, or in order to add an additional level of security and flexibility it can be deployed in external cluster.</li>
+    <li>etcd is fully replicated, highly available, consistent, reliable, secure and fast</li>
+</ul>
+<br>
+<br>
+The Slave has following components :
+<div style="color: red;">Kubelet</div>
+<ul>
+<li>It Acts as the node agent  and manages the lifecycle of every pod on its host.</li>
+<li>It uses of the pod specification in order to create containers and manage them.</li>
+<li>Kubelet understands YAML container manifests which it can read from several sources like File path
+    HTTP Endpoint
+    etcd watch acting on any changes
+    HTTP Server mode accepting container manifests over a simple API.</li>
+</ul>
+    <div style="color: red;">Kube-proxy</div>
+<ul>
+    <li>It runs in each node and manages the network rules on each node.</li>
+<li>Performs load balancing or connection forwarding for Kubernetes cluster services.</li>
+<li>It uses proxy modes rules for doing simple load balancing, TCP, UDP stream forwarding and round robin TCP, UDP forwarding.</li>
+<li>Available proxy modules are Userspace, iptables and ip virtual server</li>
+</ul>
+<div style="color: red;">Pods</div>
+<ul><li>A Pod is a group of containers that share the storage, users, network interfaces, etc. using Linux namespaces (ipc, uts, mount, pid, network and user), cgroups, and other kernel features.</li>
+<li>Containers in a pod share an IP address and the port space</li>
+</ul>
+<br>
+<div class="mini-headings">K8s High Level Architecture</div>
+<br><center>
+    <img src="assets/Kubernetes/hlaK8-s.PNG" width="720px">
+</center><br>
+Here we can see that request will come to Kubernetes cluster through API calls/CLI/UI from end user. Based on the requests, API will store the user data and other details in the form of key-value pair in ETCD database in master and based on the resource availability in the nodes, scheduler will schedule the pods in appropriate nodes according to information received from API . Controller manager will make sure the desired amount of pods is up, that is it matches desired state to current state. Kubelet (node agent) ensures the containers described in the PodSpecs are running and healthy in the nodes.
+<br>
 </p>
 <hr>
 
 
-
+<!-- 
 <p>
     <center>
         <div class="headings">
@@ -635,7 +705,7 @@ ports.<br>
         <img src="assets/Kubernetes/18.png">
     </center><br>
 </p>
-<hr>
+<hr> -->
 
 
 
@@ -649,17 +719,42 @@ ports.<br>
         </center>
        notes
     </p>
-    <hr>
+    <hr>s
+<p>
+<center>
+     <div class="headings"> Kubernetes Objects</div>
+</center>
+Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of the cluster.
+<br>Specifically, they can describe,
+<ul>
+    <li>What containerized applications are running and on which nodes</li>
+    <li>The resources available to those applications</li>
+    <li>The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance</li>
+</ul><br>
+Kubernetes contains a number of abstractions that represent the state of your system i.e. deployed containerized applications and workloads, their associated network and disk resources, and other information about what your cluster is doing. 
+<br>Lets take a look at various objects :
+<br><br>
+<div class="mini-headings">Namespace</div>
+<div class="mini-headings">PODS</div>
+<div class="mini-headings"></div>
+<div class="mini-headings">Namespace</div>
+<div class="mini-headings">Namespace</div>
 
 
 
-        <p>
-            <center>
-                <div class="headings">
-                    Kubernetes Pods
-                </div>
-            </center>
-            notes
+
+
+
+
+
+
+
+
+
+
+
+
+
         </p>
         <hr>
 
