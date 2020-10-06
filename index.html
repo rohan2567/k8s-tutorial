@@ -734,10 +734,68 @@ Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes 
 Kubernetes contains a number of abstractions that represent the state of your system i.e. deployed containerized applications and workloads, their associated network and disk resources, and other information about what your cluster is doing. 
 <br>Lets take a look at various objects :
 <br><br>
-<div class="mini-headings">Namespace</div>
 <div class="mini-headings">PODS</div>
+Assume you need to deploy some web application which has various small piece of services such as frontend (python docker image), backend (mysql docker image) and log-monitor (fluentd docker image).
+<br>
+<br>
+In Kubernetes cluster, you will deploy this application in the form of containers on the set of machines (worker nodes). However, Kubenetes does not create the container directly on the cluster nodes, container will be encapsulated into a Kubernetes object known as pod. A pod is an single instance of an application. It is the smallest object in the Kubernetes.
+<br><br>
+<center>
+    <img src="assets/Kubernetes/pod-1a.PNG" width=720px>
+</center><br>
+<div style="color: #cf8a05;">Yaml files in Kubernetes</div>
+k8s uses yaml files as inputs to create services like pods,services,deployments etc.
+<br>
+the structure of yaml file containes 4 top level fields :
+<br>
+<center>
+    <img src="assets/Kubernetes/pod1.png">
+</center><br>
+<ul>
+    <li>apiVersion : version of K8s API used to create object depending on what we are creating.</li>
+    <li>kind : Type of object we are creating
+        <br>
+        <center>
+            <img src="assets/Kubernetes/pod2.png">
+        </center><br>
+    </li>
+    <li>metadata : Data about object like name, labels etc. It is stored in a form of a dictionary.</li>
+    <li>spec : Here, we provide additional information to K8s like which image or container we need.</li>
+</ul>
+<br>
+<div style="color: #cf8a05;">Creation of PODS</div>
+We create a yaml file named pod-definition.yml and create a pod named my-app-pod
+<br>Now, run command : <br>
+<div style="color: red;">kubectl create -f pod-definition.yml</div>
+<br><center>
+    <img src="assets/Kubernetes/pod3.png">
+</center><br>
+Some commands used in PODS :<br>
+<ul>
+    <li>To get info about pods :
+        <div style="color: red;">kubectl describe pod my-app-pod</div>
+    </li><br>
+    <li>To delete a pod :
+        <div style="color: red;">kubectl delete pod my-app-pod</div>
+    </li><br>
+    <li>
+        To check all pods available :
+        <div style="color: red;">kubectl get pods</div>
+    </li><br>
+    <li>To get additional info about PODS :
+        <div style="color: red;">kubectl get pods -o wide</div>
+    </li>
+</ul>
+
+
+
+
+
+
 <div class="mini-headings"></div>
+
 <div class="mini-headings">Namespace</div>
+
 <div class="mini-headings">Namespace</div>
 
 
