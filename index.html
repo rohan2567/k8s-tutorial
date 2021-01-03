@@ -417,8 +417,9 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 		
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
+                <li>Microservice Architecture</li>
                 <li>What is Kubernetes</li>
-                <li>Architecture</li>
+                <li>K8s Architecture</li>
                 <!-- <li>Key Feautures</li> -->
                 <li>Cluster Setup</li>
                 <li>K8-s Objects</li>
@@ -436,6 +437,128 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 
 
 	    <div id="mainArea" class="quickFade delayFive">
+            <p>
+                <center>
+                    <div class="headings">
+                        Monolithic Architecture
+                    </div>
+                </center>
+In general, the word Monolithic means "formed of a single large block".<br><br>
+A monolithic application is built based on monolithic architecture and is self-contained which means 
+ it contains all parts of application packaged and deployed as a single unit.
+ It is something like a big container where all software components of an applications are assembled together,
+tightly packed and deployed as a single unit.
+<br><br>
+Monolithic architecture has 3 tiers<br><br>
+<center>
+    <img src="assets/Kubernetes/ml1.png">
+</center><br>
+<br> 
+<ul>
+<li>Presentation layer is the frontend layer build with web technologies. This tier communicates with other two 
+    tiers using API calls.
+</li>
+<li>
+    Application Tier has all the buisness logic. This is often written in Java,CSharp, Python etc.
+</li>
+<li>
+    Data tier is where the data is stored and is accessed by application layer by API calls.
+    This layer consists of database technologies like oracle, SQL etc.
+</li>
+</ul>
+<br>
+<div class="mini-headings">Advantages of Monolithic Architecture</div>
+<ul>
+    <li>
+        Simple to develop and deploy
+    </li>
+    <li>
+        Mature and old architecturet and every 
+    </li>
+</ul>
+<br>
+<div class="mini-headings">Disadvantages of Monolithic Architecture</div>
+<ul>
+    <li>
+        Applications build with monolithic architecture are very large that has multiple components in which a developer can get lost within code
+    </li>
+    <li>
+        Technology dependency on initial decision.
+    </li>
+    <li>
+        For monolithic applications, single development stack is used like only java, dotnet etc.
+    </li>
+    <li>
+        Frequent deployments are not practical as it may take hours or even days to test new features or bug fixes.
+    </li>
+    <li>
+        Scaling of monolithic architecture is very challenging as it is deployed as a single unit.
+    </li>
+</ul>
+            </p>
+            <hr>
+
+            <p>
+                <center>
+                    <div class="headings">
+                        Microservice Architecture
+                    </div>
+                </center>
+Micro means "small". Service is a component which provides functionalities to end users.
+SO combining together a microservice means small independent service which are built to handle a very specific buisness usecase.
+<br><br>
+These services will talk to each other using well defined API's.
+Each of this microservice is owned and managed by small and self contained teams that are maintained at the component level.
+<br><div class="mini-headings">
+    Characteristics
+</div>
+<ul>
+    <li>Microservice are autonomous which means it is developed, deployed ,operated and scaled without effecting 
+        functioning of other servie. Each functionality has a data that is not shared among other services.
+        A communication protocol like http,message queues needs to be established if other service needs any kind of information or data from other service.
+    </li>
+    <li>
+        Microservices are specialized. This means it focuses on solving a specific buisness problem.
+    </li>
+</ul>
+<br>
+<div class="mini-headings">Advantages</div>
+<ul>
+    <li>
+        Flexible scaling of each of individual component when needed which results in high availability.
+    </li>
+    <li>
+        Deployment is easier.
+    </li>
+    <li>
+        Microservice architecture does not depend on one Technology, tool or language and this gives flexibility to the development team to select best tool to solve problems.
+    </li>
+    <li>
+        Existing code can be used as new services which makes it as code reusable.
+    </li>
+    <li>
+        Microservice are resilience which means if any one component fails, still the app is running.
+    </li>
+</ul>
+<div class="mini-headings">Disadvantages</div>
+<ul>
+    <li>
+        Spawning which means microservice are smaller units and can grow at a very huge number which will need a proper planning.
+    </li>
+    <li>
+        As microservice grow, mainitaining these services manually is a difficult task.
+    </li>
+    <li>
+        Since code can be duplicated, every component needs continous testing.
+    </li>
+</ul>
+            </p>
+            <hr>
+
+
+
+
+
             <p>
                 <center>
                 <div class="headings">
@@ -786,25 +909,93 @@ Some commands used in PODS :<br>
         <div style="color: red;">kubectl get pods -o wide</div>
     </li>
 </ul>
+<br>
+<div class="mini-headings">Replication Controller</div>
+It is the brain behind Kubernetes processes that monitor kubernetes objects and respond accordingly.
+<br><br>
+<div style="color: blue;">Use case of Replication Controller</div>
+To prevent users from losing the access to the application, we ahould multiple instances of pod running at same time
+so that if one fails, we still have our application running.
+<br><br>
+Replication Controller ensures high availablity of the application.
+Even if we have a single POD running, we can use replication controller which helps by automatically bring up a new pod one existing pod or node dies.
+<br><br>
+<div style="color: blue;">Creation of a Replication Controller</div>
+We create a template section under "spec : " and provide a POD template in it to be used by replication controller
+to create replicas.
+<br><br>
+<center>
+    <img src="assets/Kubernetes/rc2.png" width="720px">
+</center><br>
+Even if we delete a pod, replication controller ensures another pod is up and running.<br>
+<br><center>
+    <img src="assets/Kubernetes/rc3.png">
+</center><br>
+<br>
+
+<div class="mini-headings">Replica Set</div>
+ReplicaSet is a Next-Generation Replication-controller.
+<br>
+Both serve the same purpose and it is just OLD vs NEW with only difference as selectors.
+<br>
+ReplicaSet uses Set-Based Selectors and Replication-controller supports equality based selectors.
+<br><br>
+<div style="color: blue;">Difference between Set-based and equality based selectors</div>
+<br><center>
+    <img src="assets/Kubernetes/diff1.png">
+</center><br>
+<br>
+Selectors are optional in replication controller but in case of replica set, user input is required and is written in form of matchLabels.
+Equality based selectors are less powerful but easy to code.
+<br><br>
+Use cases for using selectors :<br>
+<br><center>
+    <img src="assets/Kubernetes/diff2.png">
+</center><br>
+<br>
 
 
 
 
 
 
-<div class="mini-headings"></div>
 
-<div class="mini-headings">Namespace</div>
-
-<div class="mini-headings">Namespace</div>
+<div class="mini-headings">Deployments</div>
 
 
 
 
+<div class="mini-headings">Services in Kubernetes</div>
 
 
 
 
+<div class="mini-headings">Volumes</div>
+
+
+
+
+<div class="mini-headings">ConfigMaps</div>
+
+
+
+
+<div class="mini-headings">Namespaces</div>
+
+
+
+
+<div class="mini-headings">DaemonSets</div>
+
+
+
+
+<div class="mini-headings">Secrets</div>
+
+
+
+
+<div class="mini-headings">Jobs</div>
 
 
 
