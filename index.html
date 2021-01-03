@@ -938,11 +938,11 @@ ReplicaSet is a Next-Generation Replication-controller.
 <br>
 Both serve the same purpose and it is just OLD vs NEW with only difference as selectors.
 <br>
-ReplicaSet uses Set-Based Selectors and Replication-controller supports equality based selectors.
+ReplicaSet supports Set-Based Selectors and Replication-controller supports equality based selectors.
 <br><br>
 <div style="color: blue;">Difference between Set-based and equality based selectors</div>
 <br><center>
-    <img src="assets/Kubernetes/diff1.png">
+    <img src="assets/Kubernetes/diff1.png" width="720px">
 </center><br>
 <br>
 Selectors are optional in replication controller but in case of replica set, user input is required and is written in form of matchLabels.
@@ -950,11 +950,23 @@ Equality based selectors are less powerful but easy to code.
 <br><br>
 Use cases for using selectors :<br>
 <br><center>
-    <img src="assets/Kubernetes/diff2.png">
+    <img src="assets/Kubernetes/diff2.png" width="720px">
 </center><br>
 <br>
+<div style="color: blue;">Creation of a Replica-set</div>
+<br>
+<center>
+    <img src="assets/Kubernetes/replica_set_demo1.png">
+</center><br>
+We can also scale up and scale down the application as per the requirement using "--scale" flag.
+<br><br><center>
+    <img src="assets/Kubernetes/replica-set-scale.png" width="720px">
+</center><br>
 
-
+Commands for replica-sets<br><br>
+<center>
+    <img src="assets/Kubernetes/rc5.png">
+</center><br>
 
 
 
