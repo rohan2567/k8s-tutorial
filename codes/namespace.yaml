@@ -1,0 +1,16 @@
+apiVersion : v1
+kind : Pod
+metadata : 
+  name : demo-pod
+  namespace : test
+  labels :
+    app : application-name
+spec :
+  containers :
+    - name : nginx
+      image : nginx
+
+
+
+      
+

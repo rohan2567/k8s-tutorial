@@ -417,24 +417,16 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 		
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
+                <li>Monolithic Architecture</li>
                 <li>Microservice Architecture</li>
                 <li>What is Kubernetes</li>
                 <li>K8s Architecture</li>
                 <!-- <li>Key Feautures</li> -->
                 <li>Cluster Setup</li>
                 <li>K8-s Objects</li>
-
-
-                
-
 		</div>
 		<div class="clear"></div>
 	</div>
-	
-
-
-
-
 
 	    <div id="mainArea" class="quickFade delayFive">
             <p>
@@ -929,7 +921,7 @@ to create replicas.
 </center><br>
 Even if we delete a pod, replication controller ensures another pod is up and running.<br>
 <br><center>
-    <img src="assets/Kubernetes/rc3.png">
+    <img src="assets/Kubernetes/rc3.png" width="720px">
 </center><br>
 <br>
 
@@ -952,7 +944,6 @@ Use cases for using selectors :<br>
 <br><center>
     <img src="assets/Kubernetes/diff2.png" width="720px">
 </center><br>
-<br>
 <div style="color: blue;">Creation of a Replica-set</div>
 <br>
 <center>
@@ -967,18 +958,148 @@ Commands for replica-sets<br><br>
 <center>
     <img src="assets/Kubernetes/rc5.png">
 </center><br>
-
-
-
-
-
 <div class="mini-headings">Deployments</div>
+Lets have a scenario where you want to update your application from version 1.0 to version 2.0.
+<br><br>
+Deployments is the suitable K8s object used that provides following features :
+<ul>
+    <li>
+        Upgrades app seamlessly with zero downtime
+    </li>
+    <li>
+         Upgrades app instances sequentialy one after another
+    </li>
+    <li>
+        Pause the upgrade that is in progress and resume after some testing
+    </li>
+    <li>
+        If something goes wrong with upgrade, you will be able to rollback to previous stable state.
+    </li>
+</ul>
+<br><br>
+<div style="color: blue;">Creating a Deployment</div>
+Contents of a deployment file is similar as of a replica-set except for the kind that is Deploymemt.
+<br><br><center>
+    <img src="assets/Kubernetes/dep2.png">
+</center><br>
+To get info of all pods, rc and deployments at once, <br><br>
+<center>
+    <img src="assets/Kubernetes/dep3.png" width="720px">
+</center><br>
+<div style="color: blue;">Updates and Rollback</div>
+When we first create a deployment, it triggers a rollout.
+A new created deployment revision, example : revision 1.
+In Future, when app is updated, a new rollout is triggered and new revision 2 is created.
+<br><br>
+This helps us keep track of changes made to deployments and enables to rollback to previos versions of deployments if required.
+<br><br>To see the status and history :<br><br>
+<center>
+    <img src="assets/Kubernetes/dep4.png" width="720px">
+</center><br>
+<div style="color: blue;">Deployment Strategies</div>
+<br>
+<ul>
+    <li>
+        <div style="color: brown;">Recreate</div>
+        Destroy all of them and create new revision of app instances. But here, when older instances are deleted, app becomes unavailable.
+        <center>
+            <img src="assets/Kubernetes/dep5.png" width="720px">
+        </center><br>
+    </li>
+    <li>
+        <div style="color: brown;">Default strategy (Rolling Update)</div>
+        <br>We take down older versions and bring new versions one by one.
+        <center>
+            <img src="assets/Kubernetes/dep6.png" width="720px">
+        </center><br>
+    </li>
+</ul>
+<div style="color: blue;">How to Update Deployments ?</div>
+We can do different updates like changing images, scaling replicas, updating version of app, updating labels etc.
+We can just modify the file and run "kubectl apply".
+<br><br>
+When we execute "kubectl rollout" command just after creation, pods are created one by one.
+<br><br><center>
+    <img src="assets/Kubernetes/dep7.png" width="720px">
+</center>
+<br>We can use "--record" to get the values of changes while we rollback.
+<br><br>
+<center>
+    <img src="assets/Kubernetes/dep8.png" width="720px">
+</center><br>
+<br>
+<div style="color: blue;">Scaling replicas</div>
+kubectl scale deployment myapp-deployment --replicas=6<br>
+<br>
+<div style="color:blue;">Changing image</div>
+kubectl set image deploy myapp-deployment nginx-container=nginx:1.91 --record<br>
+<br>
+<div style="color: blue;">Undo to previous stable verison</div>
+kubectl rollout undo deployments/myapp-depoyment
+<br>
+<div class="mini-headings">Namespaces</div>
+Namespaces are intented for use in environment with many users spread across multiple teams, or projects
+They are a way to divide cluster resources between multiple users (via resource quota)
+<br><br>
+By default, K8s creates 3 namespaces 
+<ul>
+    <li>
+        <div style="color: brown;">Default</div>
+        By default, all resources are created here.
+    </li>
+        <li><div style="color: brown;">kube-public</div>
+        Resources publically readable by all users. Reserved for cluster usage.
+    </li>
+    <li><div style="color: brown;">kube-system</div>
+        namespaces for objects created by K8s system/control plane.
+    </li>
+</ul>
+<br>
+<center>
+    <img src="assets/Kubernetes/ns1.png">
+</center><br>
+<br>
+<div style="color: blue;">Functionalities of Namespaces</div>
+<ul>
+    <li>
+        Helps in pod to pod communication using same namespaces
+    </li>
+    <li>
+        Namespaces are virtual clusters that can sit on top of same physical clusters
+    </li>
+    <li>
+        Provides logical seperation between teams and their environments
+    </li>
+</ul>
+<br>
+<div style="color: blue;">Creating a Namespace</div>
+<br>Using Yaml file, <br>
+<br>
+<center>
+    <img src="assets/Kubernetes/ns2.png">
+</center><br>
+Using command line, <br>
+<br>
+<center>
+    <img src="assets/Kubernetes/ns3.png">
+</center><br>
+<div style="color: blue;">Switching between namespaces</div>
+<br>
+Switch to namespace dev and check all pods under it.
+<div style="color: red;">kubectl get pods --namespace=dev</div>
+<div style="color: red;">kubectl -n dev get pods</div>
+<br>
+Also, we can update the context to use namespace as dev for all our work
+<div style="color: red;">kubectl config set-context $(kubectl config current context) --namespace=dev</div>
+<br>
+<div style="color: blue;">Creating a pod in a namespace</div>
+First create a namespace by using command line "kubectl create ns test"
+<br><br>
+<center>
+    <img src="assets/Kubernetes/ns4.png">
+</center><br>
 
-
-
-
-<div class="mini-headings">Services in Kubernetes</div>
-
+<div class="mini-headings">Services In Kubernetes</div>
 
 
 
@@ -986,13 +1107,7 @@ Commands for replica-sets<br><br>
 
 
 
-
 <div class="mini-headings">ConfigMaps</div>
-
-
-
-
-<div class="mini-headings">Namespaces</div>
 
 
 
