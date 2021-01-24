@@ -832,7 +832,16 @@ ports.<br>
                 Cluster Setup
             </div>
         </center>
-       notes
+
+        <center>
+            <img src="assets/Kubernetes/ksetup1.png">
+        </center><br>
+
+        <center>
+            <img src="assets/Kubernetes/ksetup2.png">
+        </center><br>
+        Now verify <br>
+        <div style="color: red;">kubectl get nodes</div>
     </p>
     <hr>
 <p>
@@ -858,7 +867,7 @@ In Kubernetes cluster, you will deploy this application in the form of container
 <center>
     <img src="assets/Kubernetes/pod-1a.PNG" width=720px>
 </center><br>
-<div style="color: #cf8a05;">Yaml files in Kubernetes</div>
+<div style="color:blue">Yaml files in Kubernetes</div>
 k8s uses yaml files as inputs to create services like pods,services,deployments etc.
 <br>
 the structure of yaml file containes 4 top level fields :
@@ -878,7 +887,7 @@ the structure of yaml file containes 4 top level fields :
     <li>spec : Here, we provide additional information to K8s like which image or container we need.</li>
 </ul>
 <br>
-<div style="color: #cf8a05;">Creation of PODS</div>
+<div style="color:blue">Creation of PODS</div>
 We create a yaml file named pod-definition.yml and create a pod named my-app-pod
 <br>Now, run command : <br>
 <div style="color: red;">kubectl create -f pod-definition.yml</div>
@@ -1029,13 +1038,13 @@ When we execute "kubectl rollout" command just after creation, pods are created 
 </center><br>
 <br>
 <div style="color: blue;">Scaling replicas</div>
-kubectl scale deployment myapp-deployment --replicas=6<br>
+<div style="color: red;">kubectl scale deployment myapp-deployment --replicas=6</div><br>
 <br>
 <div style="color:blue;">Changing image</div>
-kubectl set image deploy myapp-deployment nginx-container=nginx:1.91 --record<br>
+<div style="color: red;">kubectl set image deploy myapp-deployment nginx-container=nginx:1.91 --record<br></div>
 <br>
 <div style="color: blue;">Undo to previous stable verison</div>
-kubectl rollout undo deployments/myapp-depoyment
+<div style="color: red;">kubectl rollout undo deployments/myapp-depoyment</div>
 <br>
 <div class="mini-headings">Namespaces</div>
 Namespaces are intented for use in environment with many users spread across multiple teams, or projects
